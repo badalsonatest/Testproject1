@@ -1,0 +1,327 @@
+🗂️ File and Directory Management
+Command	Description	Example
+ls	List files and directories	ls -l (long format)
+cd	Change directory	cd /home/user/Documents
+pwd	Show current directory path	pwd
+mkdir	Create a new directory	mkdir new_folder
+rmdir	Remove an empty directory	rmdir old_folder
+rm	Remove files or directories	rm file.txt or rm -r folder/
+cp	Copy files or directories	cp file1.txt file2.txt
+mv	Move or rename files	mv old.txt new.txt
+
+📄 Viewing and Editing Files
+Command	Description	Example
+cat	Show file content	cat file.txt
+more / less	View long files page by page	less bigfile.txt
+head	View first lines	head -n 10 file.txt
+tail	View last lines	tail -n 10 log.txt
+nano	Simple terminal-based editor	nano file.txt
+vim	Advanced terminal-based editor	vim file.txt
+
+=========================================================================
+==========================================================================
+
+📄 File Operations (Write, Save, Exit) in Linux Editors
+Tool	How to Write	Save File	Exit	Notes
+vim	Press i to enter insert mode	Press Esc, then type :w	:q to quit OR :wq to save and quit	Powerful editor, steeper learning curve
+nano	Start typing immediately (no insert mode)	Ctrl + O (then Enter)	Ctrl + X	Easiest editor for beginners
+cat > file.txt	Type your text after command	Press Ctrl + D	Done automatically	Overwrites file (be careful)
+echo "text" > file.txt	Adds the text	Saved automatically	Done	Good for quick, one-liners
+more / less	View only (no writing)	❌ Not possible	q to quit	Read-only viewers
+head / tail	View only (first or last lines)	❌ Not possible	Ends automatically	Use for checking file portions
+
+✅ Example: Create and Save a File Using Each Tool
+1. vim
+
+vim notes.txt
+Press i → Type text → Press Esc → Type :wq → Press Enter
+
+2. nano
+
+nano notes.txt
+Type text → Ctrl + O → Enter → Ctrl + X
+
+3. cat
+
+cat > notes.txt
+Type text → Press Ctrl + D to save and exit
+
+4. echo
+
+echo "This is a quick note" > notes.txt
+File is saved automatically
+
+
+==============================================================
+===============================================================
+
+
+📦 Package Management (Debian/Ubuntu-based)
+Command	Description	Example
+sudo apt update	Update package lists	-
+sudo apt upgrade	Upgrade installed packages	-
+sudo apt install	Install a new package	sudo apt install curl
+sudo apt remove	Remove a package	sudo apt remove nano
+
+🔍 Search and Filter
+Command	Description	Example
+find	Find files and folders	find / -name file.txt
+grep	Search text in files	grep 'hello' file.txt
+
+📊 System Info and Monitoring
+Command	Description	Example
+top	Live view of system processes	top
+htop	(Improved top, may need install)	htop
+df -h	Show disk space	-
+du -sh	Show folder size	du -sh Documents/
+free -h	Show memory usage	-
+uname -a	System info	-
+
+🔧 Permissions and Ownership
+Command	Description	Example
+chmod	Change file permissions	chmod 755 script.sh
+chown	Change file owner	chown user:group file.txt
+
+📤 Networking and Downloads
+Command	Description	Example
+ping	Check network connection	ping google.com
+curl	Download content	curl https://example.com
+wget	Another download tool	wget http://example.com/file.zip
+ifconfig or ip a	View IP address	ip a
+
+🔐 User and Permissions
+Command	Description	Example
+whoami	Show current username	-
+id	Show current user/group IDs	-
+sudo	Run a command as root	sudo apt update
+
+🔄 File Manipulation & Utilities
+Command	Description	Example
+touch	Create an empty file	touch newfile.txt
+stat	Show detailed info about a file	stat file.txt
+file	Detect file type	file myfile
+history	Show command history	history
+alias	Set a shortcut command	alias ll='ls -la'
+
+🧪 QA-Specific / Scripting
+Command	Description	Example
+diff	Compare two files line by line	diff file1.txt file2.txt
+tee	View and save command output at the same time	`ls -l
+xargs	Run commands from input	`cat list.txt
+basename	Strip path and return filename	basename /home/user/file.txt
+dirname	Get directory path from full file path	dirname /home/user/file.txt
+
+📂 Directory Utilities
+Command	Description	Example
+tree	View folder structure as tree (install with sudo apt install tree)	tree
+pushd / popd	Navigate directories with stack (advanced cd)	pushd /var/log
+
+⌛ Task & Process Management
+Command	Description	Example
+jobs	Show background jobs	jobs
+bg / fg	Move job to background/foreground	bg %1, fg %1
+nice / renice	Set process priority	nice -n 10 myscript.sh
+
+🧾 Output and Logging
+Command	Description	Example
+> / >>	Redirect output (overwrite / append)	echo Hello > out.txt, >> appends
+2> / &>	Redirect error output	command 2> error.log, &> all.log
+
+🔒 User and File Permissions (Extended)
+Command	Description	Example
+umask	Set default permission mask	umask 022
+passwd	Change user password	passwd
+groups	List groups of a user	groups badal
+
+📁 Archiving & Compression
+Command	Description	Example
+tar	Create or extract archive	tar -cvf backup.tar folder/
+zip / unzip	Compress or extract zip files	zip file.zip folder/, unzip file.zip
+gzip / gunzip	Compress with .gz	gzip file.txt, gunzip file.txt.gz
+
+🌐 Networking (More Tools)
+Command	Description	Example
+traceroute	Trace route to a host	traceroute google.com
+nslookup / dig	DNS lookup	nslookup example.com
+netstat	Show open ports and connections	netstat -tuln
+nc (netcat)	Network debugging tool	nc -zv google.com 80
+
+📎 Bonus Concepts (Non-Commands)
+Concept	Description
+$PATH	Environment variable that holds binary search paths
+cron	Task scheduler (use crontab -e to edit jobs)
+man	Manual pages (like help for any command, e.g. man chmod)
+shell scripting	Automate tasks using .sh files
+
+============================================================================================================
+
+🗂️ File & Directory Management
+ls, cd, pwd, mkdir, rm, rmdir, cp, mv, touch, tree, basename, dirname, etc.
+
+📄 Viewing & Editing Files
+cat, less, more, head, tail, nano, vim, echo, cat >, tac, diff
+
+📝 Editing Workflow (Write / Save / Exit)
+Detailed steps for vim, nano, cat, and echo
+
+📦 Package Management (Debian-based)
+apt update, apt install, apt remove, dpkg -l, etc.
+
+🔍 Search & Filter
+grep, find, xargs, cut, sort, uniq
+
+📊 System Info & Monitoring
+top, htop, df, du, free, uptime, uname, ps, kill, nice
+
+🔧 Permissions & Ownership
+chmod, chown, umask, groups, id
+
+🔐 User Commands
+whoami, sudo, passwd
+
+🌐 Networking Tools
+ping, curl, wget, ip a, netstat, ifconfig, traceroute, nslookup, nc, dig
+
+📎 Scripting & Automation Basics
+history, alias, shell shortcuts (Ctrl+C, Ctrl+R, etc.), and intro to cron
+
+🗜️ Archiving & Compression
+tar, zip/unzip, gzip/gunzip
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+=====================================================================================================
+🐧 Linux Basics Command Reference Guide
+________________________________________
+🗂️ File & Directory Management
+Command	Description	Example
+ls	List files and directories	ls -l
+cd	Change directory	cd /home/user/Documents
+pwd	Show current directory path	pwd
+mkdir	Create a new directory	mkdir new_folder
+rmdir	Remove an empty directory	rmdir old_folder
+rm	Remove files or directories	rm file.txt or rm -r folder/
+cp	Copy files or directories	cp file1.txt file2.txt
+mv	Move or rename files	mv old.txt new.txt
+touch	Create an empty file	touch newfile.txt
+tree	Show directory tree (requires install)	tree
+basename	Get file name from path	basename /path/to/file.txt
+dirname	Get directory path from file path	dirname /path/to/file.txt
+________________________________________
+📄 Viewing & Editing Files
+Command	Description	Example
+cat	Show file content	cat file.txt
+more/less	View long files page by page	less bigfile.txt
+head	View first lines	head -n 10 file.txt
+tail	View last lines	tail -n 10 log.txt
+tac	Show file in reverse	tac file.txt
+nano	Simple terminal-based editor	nano file.txt
+vim	Advanced terminal-based editor	vim file.txt
+echo	Print or write text to file	echo "text" > file.txt
+cat >	Create file and input text	cat > notes.txt
+________________________________________
+📝 File Editing: Write, Save, Exit
+Tool	How to Write	Save	Exit	Notes
+vim	Press i	Esc, :w	:q or :wq	Advanced editor
+nano	Start typing	Ctrl + O	Ctrl + X	Beginner-friendly
+cat >	Type after command	Ctrl + D	Auto-exit	Overwrites file
+echo	Add in command	Auto	Auto	For single-line text
+less / more	View only	N/A	q	Read-only
+head / tail	View only	N/A	Auto	Use for partial views
+________________________________________
+📦 Package Management (Debian/Ubuntu)
+Command	  Description			Example
+sudo apt update	Update package list	sudo apt update
+sudo apt upgrade	Upgrade installed packages	sudo apt upgrade
+sudo apt install	Install a package	sudo apt install curl
+sudo apt remove	Remove a package	sudo apt remove nano
+________________________________________
+🔍 Search and Filter
+Command	Description		Example
+find	Find files/folders	find / -name file.txt
+grep	Search text in files	grep 'hello' file.txt
+xargs	Run commands on input	cat list.txt | xargs rm
+diff	Compare two files	diff file1.txt file2.txt
+cut	Cut columns of text	cut -d: -f1 /etc/passwd
+sort, uniq	Sort and remove duplicates	sort file.txt | uniq
+________________________________________
+📊 System Info & Monitoring
+Command	Description	Example
+top	System processes	top
+htop	Advanced system monitor	htop
+df -h	Show disk space		df -h
+du -sh	Show folder size	du -sh Documents/
+free -h	Show memory usage	free -h
+uptime	Show uptime and load	uptime
+uname -a	System information	uname -a
+ps aux	View running processes	ps aux
+kill	Terminate process	kill -9 <PID>
+nice	Run process with priority	nice -n 10 command
+________________________________________
+🔐 User and Permissions
+Command	Description	Example
+chmod	Change permissions	chmod 755 script.sh
+chown	Change owner		chown user:group file.txt
+umask	Default permission mask	umask 022
+passwd	Change user password	passwd
+groups	Show user groups	groups
+id	Show UID/GID		id
+whoami	Show current user	whoami
+sudo	Run as root		sudo command
+________________________________________
+🌐 Networking and Downloads
+Command		Description		Example
+ping		Test network		ping google.com
+curl		Download content	curl https://example.com
+wget		Download files		wget http://example.com/file.zip
+ip a		Show IP address		ip a
+ifconfig	View IP (older systems)	ifconfig
+netstat -tuln	Show open ports	netstat -tuln
+traceroute	Trace network route	traceroute google.com
+nslookup / dig	DNS queries		nslookup example.com
+nc	Network utility tool		nc -zv example.com 80
+________________________________________
+🗜️ Archiving & Compression
+Command		Description	Example
+tar		Archive files/folders	tar -cvf backup.tar folder/
+zip / unzip	Compress/uncompress files	zip my.zip file.txt
+gzip / gunzip	Compress/uncompress .gz	gzip file.txt
+________________________________________
+⌨️ Useful Shell Shortcuts
+Shortcut	Action
+Ctrl + C	Stop current command
+Ctrl + R	Reverse search history
+Ctrl + U	Clear entire line
+Ctrl + A / Ctrl + E	Move to beginning / end of line
+!!		Repeat last command
+Tab		Autocomplete commands/paths
+________________________________________________________________________________________________
+===============================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
