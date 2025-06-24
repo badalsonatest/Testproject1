@@ -297,6 +297,162 @@ Tab		Autocomplete commands/paths
 ________________________________________________________________________________________________
 ===============================================================================================
 
+📖 How to Read the Permissions
+
+The first part -rw-r--r-- is the permission string, broken down as:
+
+Section	Meaning
+-	File type (- = file, d = directory)
+rw-	Owner's permissions (read + write)
+r--	Group's permissions (read only)
+r--	Others' permissions (read only)
+
+Example
+
+drwxr-xr-x 2 badal users 4096 Jun 23 12:00 myfolder/
+d → It's a directory
+
+rwx → Owner can read/write/execute
+
+r-x → Group can read and execute
+
+r-x → Others can read and execute
+
+🔧 To Change Permissions: chmod
+
+chmod u+x file.sh      # Add execute to user (owner)
+chmod g-w file.txt     # Remove write from group
+chmod 755 script.sh    # rwx for user, rx for group & others
+🔐 To Change Ownership: chown
+
+sudo chown badal:users file.txt
+Changes owner to badal and group to users.
+
+💡 Tips:
+Use ls -ld foldername/ to see folder permissions.
+
+Use stat file.txt for detailed metadata including permissions.
+
+=================================== detail explanation of chmod==============================================
+chmod stands for change mode. It's used to modify the permissions of a file or directory.
+
+In Linux, each file/directory has 3 types of users:
+
+User (u): The owner of the file
+
+Group (g): The group associated with the file
+
+Others (o): Everyone else
+
+Each of them can have 3 types of permissions:
+
+Read (r): View contents
+
+Write (w): Modify contents
+
+Execute (x): Run the file (e.g., a script)
+
+🔢 Numeric (Octal) Mode vs Symbolic Mode
+1️⃣ Numeric (Octal) Mode
+You use numbers to set permissions:
+
+Number	Permission	Meaning
+7	rwx	read + write + execute
+6	rw-	read + write
+5	r-x	read + execute
+4	r--	read only
+3	-wx	write + execute
+2	-w-	write only
+1	--x	execute only
+0	---	no permission
+
+Format:
+
+bash
+
+chmod XYZ file
+# X = user, Y = group, Z = others
+🧪 Example:
+
+bash
+
+chmod 755 script.sh
+Means:
+
+User: 7 = rwx
+
+Group: 5 = r-x
+
+Others: 5 = r-x
+
+So the script can be run by anyone, but only the owner can modify it.
+
+2️⃣ Symbolic Mode
+This is more readable and specific. You can add (+), remove (-), or set (=) permissions.
+
+Format:
+
+css
+
+chmod [ugoa][+-=][rwx] file
+Symbol	Meaning
+u	user (owner)
+g	group
+o	others
+a	all (user + group + others)
+
+🧪 Examples:
+bash
+
+chmod u+x file.sh
+→ Adds execute permission to the user only.
+
+bash
+
+chmod g-w file.txt
+→ Removes write permission from the group.
+
+bash
+
+chmod a=r file.txt
+→ Sets the file to read-only for everyone.
+
+bash
+
+chmod u=rw,go=r file.txt
+→ User gets read+write, group & others get read-only.
+
+🧰 Common Use Cases
+Task				Command
+Make a script executable	chmod +x script.sh
+Make a file read-only		chmod 444 file.txt
+Give full access to owner only	chmod 700 file.txt
+Remove execute for everyone	chmod a-x script.sh
+
+👁 How to Check Permissions
+Use ls -l:
+
+bash
+Copy
+Edit
+ls -l file.txt
+You’ll see output like:
+
+bash
+
+-rwxr-xr-- 1 badal.sona users 1234 Jun 23 16:08 script.sh
+It breaks down like this:
+
+- → File (not directory)
+
+rwx → User
+
+r-x → Group
+
+r-- → Others
+========================================
+
+
 
 
 
