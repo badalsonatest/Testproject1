@@ -1,0 +1,52 @@
+video2 timming 40 min 
+=======================
+change the directory 
+cmd 	cd /e/badal/linuxmodule		go to working my jatin folder
+
+1 echo command 
+==============
+cmd 	echo text 			display the content on the display
+
+cmd	echo text > filename.txt	it will write the content in the file 	
+
+cmd 	echo text >> filename.txt	it will append the content in the file 	
+
+
+===========================================================
+create the file 
+---------------
+1) touch command 
+
+cmd 	touch filename.txt		it will create the file txt 
+
+cmd 	touch filename			without extension name 
+					it will create a generalized file 
+
+2) echo command 
+
+3) redirection operator 
+
+4) vim command 
+
+5) nano command 
+cmd 	nano filename.txt	editor will open 
+				write the content in the editor 
+				control+o 	enter 		control+x
+
+
+Summary of File Creation Commands
+===================================
+Command		Purpose	Interactive?	Overwrites Existing?
+touch file	Creates empty file	No	No
+> file		Creates/truncates empty file	No	Yes
+echo "" > file	Creates file with empty line	No	Yes
+vim file	Opens editor, creates if not exists	Yes	No (unlessedited)
+
+===============================================================>
+
+
+
+
+
+
+
