@@ -1,0 +1,117 @@
+🔁 Compare: What’s on Your Laptop vs. Jenkins Machine
+Component			On Your Laptop	On Jenkins Machine (Needs to Be)
+Java				✅		✅
+Maven				✅		✅
+Appium installed		✅		⚠️ Might be missing
+Node.js installed		✅		⚠️ Might be missing
+Android SDK			✅		⚠️ Might be missing
+Connected device/emulator	✅		⚠️ Might be missing
+
+============================================================================
+✅ Step-by-Step Guide to Run in Jenkins
+✅ Step 1: Install Prerequisites on Jenkins Server
+Log in to your Jenkins server (or agent where tests will run), and install the following:
+
+bash
+
+# Install Node.js (needed for Appium)
+sudo apt update
+sudo apt install nodejs npm
+
+# Install Appium
+npm install -g appium
+
+# Install Java (if not already)
+sudo apt install default-jdk
+
+# Install Android SDK (can use Android Studio or sdkmanager)
+Then add environment variables:
+
+
+bash
+
+export ANDROID_HOME=/path/to/android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
+✅ Step 2: Connect Device or Set Up Emulator
+You can connect a real Android phone via USB, or
+
+Use an Android emulator with:
+
+bash
+
+emulator -avd <emulator_name>
+Use adb devices to confirm it's connected.
+
+✅ Step 3: Configure Jenkins Job
+Assuming you're using a Freestyle Job, do the following:
+
+💡 In Jenkins → Job → Configure:
+🛠 Add Build Step → Execute Shell
+Paste this:
+
+bash
+
+#!/bin/bash
+
+echo "Running Mobile Tests in Jenkins"
+
+# Start Appium in background
+appium --log-level info &
+
+# Wait for Appium to start
+sleep 10
+
+# (Optional) Start emulator if needed
+# emulator -avd <Your_Emulator_Name> &
+
+# Wait for device to be ready
+adb wait-for-device
+
+# Run Maven mobile tests
+mvn clean test -Pmobile
+🔁 This is the same as what you're doing on your laptop — just automated inside Jenkins.
+
+✅ Step 4: Make Sure Jenkins Has Permissions
+Jenkins must run with a user that can access:
+
+Android SDK
+
+Appium
+
+adb
+
+You might need to set environment variables in ~/.bashrc or globally for Jenkins.
+
+🔍 How to Test It’s Working
+Go to Jenkins → Your Job → Build Now
+
+Jenkins console output should show:
+
+Appium server starting
+
+Device detected
+
+Maven running the mobile TestNG suite
+
+❗ If It Fails
+Common issues and fixes:
+
+Problem	Fix
+adb not found	Set ANDROID_HOME and add to PATH
+Appium not recognized	Install Appium with npm install -g appium
+Device not detected	Use adb devices to confirm device is connected
+Appium server not running	Ensure appium & runs before mvn test
+Emulator not starting	Install emulator, create AVD, and start it in the script
+
+✅ Summary
+You’ve already built and tested mobile automation on your laptop. Now in Jenkins:
+
+Make sure Jenkins machine has the same tools.
+
+Add a shell step in your Jenkins job to:
+
+Start Appium
+
+Wait for the device
+
+Run your mobile tests using Maven (mvn clean test -Pmobile)
